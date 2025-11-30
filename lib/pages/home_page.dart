@@ -10,6 +10,7 @@ import '../services/audio_feedback.dart';
 import '../services/ad_service.dart';
 import '../services/analytics_service.dart';
 import '../services/language_service.dart';
+import 'package:car_learning_app/widgets/achievement_unlocked_dialog.dart';
 import '../services/tutorial_service.dart';
 
 class HomePageTutorialBridge {
@@ -952,7 +953,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       await prefs.setStringList('unlockedAchievements', unlocked);
 
       // show the popup
-      showAchievementSnackBar(_getAchievementTitle(id));
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (ctx) => AchievementUnlockedDialog(
+            title: _getAchievementTitle(id),
+            achievementId: id,
+          ),
+        );
+      }
     }
   }
 

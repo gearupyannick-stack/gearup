@@ -10,6 +10,9 @@ import '../services/analytics_service.dart';
 import '../services/language_service.dart';
 import '../services/tutorial_service.dart';
 import '../services/leaderboard_service.dart';
+import '../services/achievement_service.dart';
+import '../services/club_activity_service.dart';
+import 'package:car_learning_app/widgets/achievement_unlocked_dialog.dart';
 import '../widgets/country_picker_dialog.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -65,7 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
   bool _isCarDataLoaded = false;
 
   String _getAchievementIdFromName(String name) {
-    return name.split("–")[0].trim().toLowerCase().replaceAll(' ', '_');
+    return name.split("–")[0].trim().toLowerCase().replaceAll(' ', '_').replaceAll('-', '_');
   }
 
   bool isUnlocked(String name) {
@@ -162,13 +165,39 @@ class _ProfilePageState extends State<ProfilePage> {
     return String.fromCharCode(firstLetter) + String.fromCharCode(secondLetter);
   }
 
-  void showAchievementSnackBar(String title) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('profile.achievementUnlocked'.tr(namedArgs: {'title': title})),
-        duration: const Duration(seconds: 2),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.black87,
+  void _showAchievementUnlockedPopup(String title, String id) {
+    final imagePath = 'assets/achievements/$id.png';
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF2A2A2A),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("ACHIEVEMENT UNLOCKED!", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.amber)),
+            const SizedBox(height: 16),
+            Image.asset(
+              imagePath,
+              width: 80,
+              height: 80,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(Icons.emoji_events, size: 80, color: Colors.amber);
+              },
+            ),
+            const SizedBox(height: 16),
+            Text(title, style: const TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          ],
+        ),
+        actions: [
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: Text('AWESOME!', style: TextStyle(color: Colors.black)),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -191,7 +220,17 @@ class _ProfilePageState extends State<ProfilePage> {
       unlocked.add(id);
       await prefs.setStringList('unlockedAchievements', unlocked);
       final title = _getDisplayNameFromId(id);
-      showAchievementSnackBar(title);
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (ctx) => AchievementUnlockedDialog(
+            title: title,
+            achievementId: id,
+          ),
+        );
+        // Refresh state to show new achievement
+        _loadUnlockedAchievements();
+      }
     }
   }
 
@@ -212,9 +251,19 @@ class _ProfilePageState extends State<ProfilePage> {
     final old = prefs.getStringList('shownAchievements') ?? [];
     for (final id in all) {
       if (!old.contains(id)) {
+        final title = _getDisplayNameFromId(id);
+        if (mounted) {
+           showDialog(
+            context: context,
+            builder: (ctx) => AchievementUnlockedDialog(
+              title: title,
+              achievementId: id,
+            ),
+          );
+        }
         old.add(id);
         await prefs.setStringList('shownAchievements', old);
-        break;
+        break; 
       }
     }
   }
@@ -804,6 +853,62 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  Map<String, dynamic>? _getAchievementProgress(String achievementId) {
+    double progress = 0.0;
+    String text = '';
+
+    switch (achievementId) {
+      case 'gear_rookie':
+        progress = (_gearCount / 100).clamp(0.0, 1.0);
+        text = '$_gearCount / 100 Gears';
+        break;
+      case 'gear_grinder':
+        progress = (_gearCount / 1000).clamp(0.0, 1.0);
+        text = '$_gearCount / 1000 Gears';
+        break;
+      case 'gear_tycoon':
+        progress = (_gearCount / 5000).clamp(0.0, 1.0);
+        text = '$_gearCount / 5000 Gears';
+        break;
+      case 'training_initiate':
+        progress = (trainingCompletedCount / 1).clamp(0.0, 1.0);
+        text = '$trainingCompletedCount / 1 Session';
+        break;
+      case 'training_regular':
+        progress = (trainingCompletedCount / 10).clamp(0.0, 1.0);
+        text = '$trainingCompletedCount / 10 Sessions';
+        break;
+      case 'training_veteran':
+        progress = (trainingCompletedCount / 50).clamp(0.0, 1.0);
+        text = '$trainingCompletedCount / 50 Sessions';
+        break;
+      case 'perseverance':
+        // This one is harder to track as we don't store correction counts.
+        // For now, we'll show no progress. A future update could store this.
+        return null;
+      case 'sharpshooter':
+        final accuracy = questionAttemptCount > 0 ? (correctAnswerCount / questionAttemptCount) : 0.0;
+        // Goal is 90% accuracy over 200 attempts. We can show progress towards both.
+        if (questionAttemptCount < 200) {
+          progress = (questionAttemptCount / 200).clamp(0.0, 1.0);
+          text = '$questionAttemptCount / 200 Questions Answered';
+        } else {
+          progress = (accuracy / 0.9).clamp(0.0, 1.0);
+          text = '${(accuracy * 100).toStringAsFixed(1)}% / 90% Accuracy';
+        }
+        break;
+      case 'training_all_star':
+         progress = (categoriesMastered / 8).clamp(0.0, 1.0);
+         text = '$categoriesMastered / 8 Modules Mastered';
+         break;
+      default:
+        // Return null for achievements that are one-off events or not easily trackable here.
+        return null;
+    }
+
+    return {'progress': progress, 'text': text};
+  }
+
   void _showAchievementPopup(BuildContext context, String fullText) {
     final parts = fullText.split("–");
     final title = parts[0].trim();
@@ -812,6 +917,11 @@ class _ProfilePageState extends State<ProfilePage> {
     final isUnlocked = unlockedAchievementIds.contains(id);
     final imageName = isUnlocked ? id : '${id}_locked';
     final imagePath = 'assets/achievements/$imageName.png';
+
+    Map<String, dynamic>? progressData;
+    if (!isUnlocked) {
+      progressData = _getAchievementProgress(id);
+    }
 
     showDialog(
       context: context,
@@ -830,6 +940,18 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const SizedBox(height: 16),
             Text(description),
+            if (progressData != null) ...[
+              const SizedBox(height: 20),
+              Text('Your Progress:', style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              LinearProgressIndicator(
+                value: progressData['progress'],
+                backgroundColor: Colors.grey[700],
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+              ),
+              const SizedBox(height: 4),
+              Text(progressData['text']),
+            ]
           ],
         ),
         actions: [TextButton(onPressed: () => Navigator.of(ctx).pop(), child: Text('common.ok'.tr()))],
@@ -1120,14 +1242,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
     if (_justUnlockedAchievement != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('profile.achievementUnlocked'.tr(namedArgs: {'title': _justUnlockedAchievement ?? ''})),
-            duration: const Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.black87,
-          ),
-        );
+        _showAchievementUnlockedPopup(_justUnlockedAchievement!, _getAchievementIdFromName(_justUnlockedAchievement!));
+        setState(() {
+          _justUnlockedAchievement = null;
+        });
       });
     }
 
@@ -1851,18 +1969,9 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           const SizedBox(height: 16),
           if (unlocked.isNotEmpty) ...[
-            GestureDetector(
-              onTap: () => _showUnlockedAchievementsPopup(context),
-              child: Row(
-                children: [
-                  Text(
-                    'profileProgress.achievements.unlocked'.tr(),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.amber[400]),
-                  ),
-                  const SizedBox(width: 8),
-                  Icon(Icons.touch_app, size: 16, color: Colors.white38),
-                ],
-              ),
+            Text(
+              'profileProgress.achievements.unlocked'.tr(),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.amber[400]),
             ),
             const SizedBox(height: 8),
             GridView.count(
@@ -1877,18 +1986,9 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
           if (locked.isNotEmpty) ...[
             const SizedBox(height: 16),
-            GestureDetector(
-              onTap: () => _showLockedAchievementsPopup(context),
-              child: Row(
-                children: [
-                  Text(
-                    'profileProgress.achievements.locked'.tr(),
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey[500]),
-                  ),
-                  const SizedBox(width: 8),
-                  Icon(Icons.touch_app, size: 16, color: Colors.white38),
-                ],
-              ),
+            Text(
+              'profileProgress.achievements.locked'.tr(),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.grey[500]),
             ),
             const SizedBox(height: 8),
             GridView.count(
@@ -1901,6 +2001,16 @@ class _ProfilePageState extends State<ProfilePage> {
               children: locked.take(3).map((name) => _buildMiniAchievement(name)).toList(),
             ),
           ],
+          const SizedBox(height: 16),
+          Center(
+            child: TextButton(
+              onPressed: () => _showAllAchievementsPopup(context),
+              child: Text(
+                'View All Achievements',
+                style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -40,6 +40,7 @@ profile.plist
 .pub-cache/
 .pub/
 /build/
+/android/
 
 # Symbolication related
 app.*.symbols

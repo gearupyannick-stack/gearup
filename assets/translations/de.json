@@ -641,5 +641,146 @@
       "unlocked": "Freigeschaltet",
       "locked": "Gesperrt"
     }
+  },
+  "clubs": {
+    "title": "Clubs",
+    "myClubs": "Meine Clubs",
+    "discover": "Entdecken",
+    "createButton": "Club Erstellen",
+    "joinButton": "Beitreten",
+    "leave": "Club Verlassen",
+    "settings": "Club-Einstellungen",
+    "info": {
+      "name": "Club-Name",
+      "description": "Beschreibung",
+      "inviteCode": "Einladungscode",
+      "visibility": "Sichtbarkeit",
+      "public": "Öffentlich",
+      "private": "Privat",
+      "members": "Mitglieder",
+      "memberCount": "{count}/{max} Mitglieder",
+      "activeNow": "{count} jetzt aktiv"
+    },
+    "tabs": {
+      "chat": "Chat",
+      "members": "Mitglieder",
+      "tournaments": "Turniere",
+      "stats": "Statistiken"
+    },
+    "chat": {
+      "typeMessage": "Nachricht eingeben...",
+      "sendRaceChallenge": "Rennherausforderung Senden",
+      "instantRace": "Sofortiges Rennen",
+      "scheduledRace": "Geplantes Rennen",
+      "raceStartsIn": "Startet in {seconds}s",
+      "participantsJoined": "{count}/{max} beigetreten",
+      "raceCompleted": "Rennen abgeschlossen",
+      "winner": "Gewinner: {name}"
+    },
+    "members": {
+      "owner": "Besitzer",
+      "moderator": "Moderator",
+      "member": "Mitglied",
+      "promote": "Zum Moderator Befördern",
+      "demote": "Zum Mitglied Zurückstufen",
+      "kick": "Aus Club Entfernen",
+      "kickConfirm": "{name} aus dem Club entfernen?",
+      "lastSeen": "Zuletzt gesehen {time}",
+      "stats": "Statistiken",
+      "racesWon": "Rennen Gewonnen: {count}",
+      "tournamentsPlayed": "Turniere: {count}"
+    },
+    "tournaments": {
+      "create": "Turnier Erstellen",
+      "upcoming": "Bevorstehend",
+      "active": "Aktiv",
+      "past": "Vergangen",
+      "name": "Turniername",
+      "format": "Format",
+      "singleElimination": "K.o.-System",
+      "roundRobin": "Jeder gegen Jeden",
+      "maxParticipants": "Max. Teilnehmer",
+      "registrationDeadline": "Anmeldeschluss",
+      "startTime": "Startzeit",
+      "questionsPerMatch": "Fragen pro Spiel",
+      "register": "Registrieren",
+      "unregister": "Abmelden",
+      "registered": "Registriert",
+      "registrationOpen": "Anmeldung Offen",
+      "inProgress": "In Bearbeitung",
+      "completed": "Abgeschlossen",
+      "bracket": "Turnierbaum",
+      "standings": "Rangliste",
+      "matchesPlayed": "Spiele: {count}",
+      "points": "Punkte: {count}",
+      "record": "S-N: {wins}-{losses}",
+      "champion": "🏆 Champion: {name}",
+      "startMatch": "Spiel Starten",
+      "viewBracket": "Turnierbaum Ansehen",
+      "round": "Runde {number}",
+      "finals": "Finale",
+      "semifinals": "Halbfinale"
+    },
+    "stats": {
+      "activityFeed": "Letzte Aktivität",
+      "topMembers": "Top Mitglieder",
+      "clubRaces": "Club-Rennen",
+      "totalRaces": "Gesamt Rennen: {count}",
+      "totalTournaments": "Turniere: {count}",
+      "homeChallengeScore": "{type} Herausforderung: {score}/{total}",
+      "publicRaceWin": "Öffentliches Rennen gewonnen",
+      "publicRaceLoss": "Öffentliches Rennen abgeschlossen",
+      "clubRaceWin": "Club-Rennen gewonnen",
+      "clubRaceLoss": "Club-Rennen abgeschlossen",
+      "tournamentResult": "Turnierspiel"
+    },
+    "create": {
+      "title": "Neuen Club Erstellen",
+      "nameHint": "Club-Namen eingeben (max. 30 Zeichen)",
+      "descriptionHint": "Club beschreiben (max. 200 Zeichen)",
+      "visibilityLabel": "Wer kann diesen Club sehen?",
+      "publicDescription": "Jeder kann finden und beitreten",
+      "privateDescription": "Nur auf Einladung",
+      "createButton": "Club Erstellen",
+      "creating": "Club wird erstellt...",
+      "success": "Club erstellt!",
+      "error": "Fehler beim Erstellen: {error}"
+    },
+    "join": {
+      "byCode": "Mit Einladungscode Beitreten",
+      "enterCode": "6-stelligen Code eingeben",
+      "codeHint": "z.B. ABC123",
+      "joinButton": "Club Beitreten",
+      "joining": "Beitritt läuft...",
+      "success": "{clubName} beigetreten!",
+      "notFound": "Club nicht gefunden",
+      "full": "Club ist voll",
+      "alreadyMember": "Sie sind bereits Mitglied",
+      "error": "Fehler beim Beitritt: {error}"
+    },
+    "errors": {
+      "loadFailed": "Clubs konnten nicht geladen werden",
+      "createFailed": "Club konnte nicht erstellt werden",
+      "joinFailed": "Beitritt fehlgeschlagen",
+      "leaveFailed": "Verlassen fehlgeschlagen",
+      "kickFailed": "Entfernen fehlgeschlagen",
+      "chatFailed": "Nachricht konnte nicht gesendet werden",
+      "tournamentFailed": "Turnier konnte nicht erstellt werden"
+    },
+    "confirmations": {
+      "leaveClub": "Möchten Sie {clubName} wirklich verlassen?",
+      "deleteClub": "{clubName} dauerhaft löschen? Dies kann nicht rückgängig gemacht werden.",
+      "cancelTournament": "Dieses Turnier abbrechen? Registrierte Mitglieder werden benachrichtigt."
+    },
+    "empty": {
+      "noClubs": "Sie sind noch keinem Club beigetreten",
+      "noClubsDiscover": "Finden Sie Clubs im Entdecken-Tab",
+      "noPublicClubs": "Keine öffentlichen Clubs verfügbar",
+      "createFirst": "Seien Sie der Erste, der einen erstellt!",
+      "noMessages": "Noch keine Nachrichten",
+      "startConversation": "Beginnen Sie eine Unterhaltung!",
+      "noTournaments": "Noch keine Turniere",
+      "noActivity": "Keine letzte Aktivität"
+    }
   }
 }

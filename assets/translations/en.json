@@ -591,7 +591,8 @@
       "gearMastery": "🔸 Gear Mastery",
       "gateTrackUnlocks": "🔸 Gate & Track Unlocks",
       "comebackCorrection": "🔸 Comeback & Correction",
-      "trainingAchievements": "🎓 Training Achievements"
+      "trainingAchievements": "🎓 Training Achievements",
+      "clubMilestones": "🏆 Club Milestones"
     },
     "list": {
       "firstFlag": "First Flag – Tap your very first flag on any Track.",
@@ -615,7 +616,18 @@
       "quizStreak": "Quiz Streak – Score ≥ 10/20 in 5 sessions in a row.",
       "sharpshooter": "Sharpshooter – Maintain ≥ 90% accuracy over 200 total question attempts.",
       "allRounder": "All-Rounder – On one day, score ≥ 10/20 in all 8 modules.",
-      "trainingAllStar": "Training All-Star – Earn 20/20 in all 8 modules (at least once each)."
+      "trainingAllStar": "Training All-Star – Earn 20/20 in all 8 modules (at least once each).",
+      "clubFounder": "Club Founder – Create your first club.",
+      "clubGrowing": "Club Growing – Reach 10 active members in your club.",
+      "clubThriving": "Club Thriving – Reach 25 active members in your club.",
+      "raceOrganizer": "Race Organizer – Host 10 club races.",
+      "raceEnthusiast": "Race Enthusiast – Host 50 club races.",
+      "raceLegend": "Race Legend – Host 100 club races.",
+      "pointCollector": "Point Collector – Earn 100 total club points.",
+      "pointAccumulator": "Point Accumulator – Earn 1,000 total club points.",
+      "pointTycoon": "Point Tycoon – Earn 5,000 total club points.",
+      "socialButterfly": "Social Butterfly – Send 100 messages in club chat.",
+      "teamPlayer": "Team Player – Participate in 25 club races."
     }
   },
   "profileProgress": {

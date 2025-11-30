@@ -641,5 +641,146 @@
       "unlocked": "Desbloqueado",
       "locked": "Bloqueado"
     }
+  },
+  "clubs": {
+    "title": "Clubes",
+    "myClubs": "Mis Clubes",
+    "discover": "Descubrir",
+    "createButton": "Crear Club",
+    "joinButton": "Unirse",
+    "leave": "Salir del Club",
+    "settings": "Configuración del Club",
+    "info": {
+      "name": "Nombre del Club",
+      "description": "Descripción",
+      "inviteCode": "Código de Invitación",
+      "visibility": "Visibilidad",
+      "public": "Público",
+      "private": "Privado",
+      "members": "Miembros",
+      "memberCount": "{count}/{max} miembros",
+      "activeNow": "{count} activos ahora"
+    },
+    "tabs": {
+      "chat": "Chat",
+      "members": "Miembros",
+      "tournaments": "Torneos",
+      "stats": "Estadísticas"
+    },
+    "chat": {
+      "typeMessage": "Escribe un mensaje...",
+      "sendRaceChallenge": "Enviar Desafío de Carrera",
+      "instantRace": "Carrera Instantánea",
+      "scheduledRace": "Carrera Programada",
+      "raceStartsIn": "Comienza en {seconds}s",
+      "participantsJoined": "{count}/{max} unidos",
+      "raceCompleted": "Carrera completada",
+      "winner": "Ganador: {name}"
+    },
+    "members": {
+      "owner": "Propietario",
+      "moderator": "Moderador",
+      "member": "Miembro",
+      "promote": "Promover a Moderador",
+      "demote": "Degradar a Miembro",
+      "kick": "Eliminar del Club",
+      "kickConfirm": "¿Eliminar a {name} del club?",
+      "lastSeen": "Visto por última vez {time}",
+      "stats": "Estadísticas",
+      "racesWon": "Carreras Ganadas: {count}",
+      "tournamentsPlayed": "Torneos: {count}"
+    },
+    "tournaments": {
+      "create": "Crear Torneo",
+      "upcoming": "Próximos",
+      "active": "Activos",
+      "past": "Pasados",
+      "name": "Nombre del Torneo",
+      "format": "Formato",
+      "singleElimination": "Eliminación Directa",
+      "roundRobin": "Todos contra Todos",
+      "maxParticipants": "Máx. Participantes",
+      "registrationDeadline": "Fecha Límite de Inscripción",
+      "startTime": "Hora de Inicio",
+      "questionsPerMatch": "Preguntas por Partida",
+      "register": "Inscribirse",
+      "unregister": "Cancelar Inscripción",
+      "registered": "Inscrito",
+      "registrationOpen": "Inscripción Abierta",
+      "inProgress": "En Progreso",
+      "completed": "Completado",
+      "bracket": "Cuadro",
+      "standings": "Clasificación",
+      "matchesPlayed": "Partidas: {count}",
+      "points": "Puntos: {count}",
+      "record": "V-D: {wins}-{losses}",
+      "champion": "🏆 Campeón: {name}",
+      "startMatch": "Iniciar Partida",
+      "viewBracket": "Ver Cuadro",
+      "round": "Ronda {number}",
+      "finals": "Finales",
+      "semifinals": "Semifinales"
+    },
+    "stats": {
+      "activityFeed": "Actividad Reciente",
+      "topMembers": "Mejores Miembros",
+      "clubRaces": "Carreras del Club",
+      "totalRaces": "Total de Carreras: {count}",
+      "totalTournaments": "Torneos: {count}",
+      "homeChallengeScore": "Desafío {type}: {score}/{total}",
+      "publicRaceWin": "Carrera pública ganada",
+      "publicRaceLoss": "Carrera pública completada",
+      "clubRaceWin": "Carrera del club ganada",
+      "clubRaceLoss": "Carrera del club completada",
+      "tournamentResult": "Partida de torneo"
+    },
+    "create": {
+      "title": "Crear Nuevo Club",
+      "nameHint": "Ingresa el nombre del club (máx. 30 caracteres)",
+      "descriptionHint": "Describe tu club (máx. 200 caracteres)",
+      "visibilityLabel": "¿Quién puede ver este club?",
+      "publicDescription": "Cualquiera puede encontrar y unirse",
+      "privateDescription": "Solo por invitación",
+      "createButton": "Crear Club",
+      "creating": "Creando club...",
+      "success": "¡Club creado!",
+      "error": "Error al crear: {error}"
+    },
+    "join": {
+      "byCode": "Unirse con Código de Invitación",
+      "enterCode": "Ingresa el código de 6 caracteres",
+      "codeHint": "ej. ABC123",
+      "joinButton": "Unirse al Club",
+      "joining": "Uniéndose...",
+      "success": "¡Te uniste a {clubName}!",
+      "notFound": "Club no encontrado",
+      "full": "El club está lleno",
+      "alreadyMember": "Ya eres miembro",
+      "error": "Error al unirse: {error}"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar clubes",
+      "createFailed": "Error al crear club",
+      "joinFailed": "Error al unirse",
+      "leaveFailed": "Error al salir",
+      "kickFailed": "Error al eliminar miembro",
+      "chatFailed": "Error al enviar mensaje",
+      "tournamentFailed": "Error al crear torneo"
+    },
+    "confirmations": {
+      "leaveClub": "¿Estás seguro de que quieres salir de {clubName}?",
+      "deleteClub": "¿Eliminar permanentemente {clubName}? Esto no se puede deshacer.",
+      "cancelTournament": "¿Cancelar este torneo? Se notificará a los miembros inscritos."
+    },
+    "empty": {
+      "noClubs": "Aún no te has unido a ningún club",
+      "noClubsDiscover": "Encuentra clubes en la pestaña Descubrir",
+      "noPublicClubs": "No hay clubes públicos disponibles",
+      "createFirst": "¡Sé el primero en crear uno!",
+      "noMessages": "Aún no hay mensajes",
+      "startConversation": "¡Inicia una conversación!",
+      "noTournaments": "Aún no hay torneos",
+      "noActivity": "No hay actividad reciente"
+    }
   }
 }
