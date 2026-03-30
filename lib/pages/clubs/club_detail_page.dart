@@ -69,7 +69,7 @@ class _ClubDetailPageState extends State<ClubDetailPage> with SingleTickerProvid
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Invite code ${_club!.inviteCode} copied!'),
+          content: Text('clubs.messages.inviteCodeCopied'.tr(namedArgs: {'code': _club!.inviteCode})),
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.green,
         ),
@@ -105,8 +105,8 @@ class _ClubDetailPageState extends State<ClubDetailPage> with SingleTickerProvid
 
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Left club successfully'),
+            SnackBar(
+              content: Text('clubs.messages.leftClubSuccess'.tr()),
               backgroundColor: Colors.green,
             ),
           );
@@ -116,7 +116,7 @@ class _ClubDetailPageState extends State<ClubDetailPage> with SingleTickerProvid
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Error leaving club: ${e.toString()}'),
+              content: Text('clubs.messages.errorLeavingClub'.tr(namedArgs: {'error': e.toString()})),
               backgroundColor: Colors.red,
             ),
           );
@@ -190,7 +190,7 @@ class _ClubDetailPageState extends State<ClubDetailPage> with SingleTickerProvid
                   children: [
                     const Icon(Icons.copy, size: 20),
                     const SizedBox(width: 12),
-                    Text('Copy Invite Code (${_club!.inviteCode})'),
+                    Text('clubs.messages.copyInviteCode'.tr(namedArgs: {'code': _club!.inviteCode})),
                   ],
                 ),
               ),

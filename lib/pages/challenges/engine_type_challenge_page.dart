@@ -209,7 +209,7 @@ super.dispose();
               Navigator.pop(
                 context,
                 '$_correctAnswers/20 in ${_elapsedSeconds ~/ 60}\''
-                '${(_elapsedSeconds % 60).toString().padLeft(2, '0')}\'\'',
+                '${(_elapsedSeconds % 60).toString().padLeft(2, '0')}\'',
               );
             },
             child: Text(tr('common.ok')),

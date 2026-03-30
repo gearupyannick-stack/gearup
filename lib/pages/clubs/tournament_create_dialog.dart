@@ -97,10 +97,10 @@ class _TournamentCreateDialogState extends State<TournamentCreateDialog> {
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
-                    return 'Please enter a tournament name';
+                    return 'clubs.messages.pleaseEnterName'.tr();
                   }
                   if (value.trim().length > 30) {
-                    return 'Max 30 characters';
+                    return 'clubs.messages.maxCharacters'.tr();
                   }
                   return null;
                 },
@@ -171,7 +171,7 @@ class _TournamentCreateDialogState extends State<TournamentCreateDialog> {
                 items: [4, 8, 16, 32].map((value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text('$value players'),
+                    child: Text('clubs.messages.players'.tr(namedArgs: {'count': '$value'})),
                   );
                 }).toList(),
                 onChanged: (value) => setState(() => _maxParticipants = value!),
@@ -198,7 +198,7 @@ class _TournamentCreateDialogState extends State<TournamentCreateDialog> {
                 items: [5, 10, 15, 20].map((value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text('$value questions'),
+                    child: Text('clubs.messages.questions'.tr(namedArgs: {'count': '$value'})),
                   );
                 }).toList(),
                 onChanged: (value) => setState(() => _questionsPerMatch = value!),
@@ -250,7 +250,7 @@ class _TournamentCreateDialogState extends State<TournamentCreateDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel', style: TextStyle(color: Colors.grey[400])),
+          child: Text('clubs.messages.cancel'.tr(), style: TextStyle(color: Colors.grey[400])),
         ),
         ElevatedButton(
           onPressed: _submit,

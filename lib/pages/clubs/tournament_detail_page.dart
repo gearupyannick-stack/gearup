@@ -27,13 +27,13 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
       await TournamentService.instance.registerForTournament(widget.clubId, widget.tournamentId);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registered!'), backgroundColor: Colors.green),
+          SnackBar(content: Text('clubs.messages.registered'.tr()), backgroundColor: Colors.green),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('clubs.messages.error'.tr(namedArgs: {'error': e.toString()})), backgroundColor: Colors.red),
         );
       }
     }
@@ -44,13 +44,13 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
       await TournamentService.instance.unregisterFromTournament(widget.clubId, widget.tournamentId);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Unregistered'), backgroundColor: Colors.green),
+          SnackBar(content: Text('clubs.messages.unregistered'.tr()), backgroundColor: Colors.green),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('clubs.messages.error'.tr(namedArgs: {'error': e.toString()})), backgroundColor: Colors.red),
         );
       }
     }
@@ -61,13 +61,13 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
       await TournamentService.instance.startTournament(widget.clubId, widget.tournamentId);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Tournament started!'), backgroundColor: Colors.green),
+          SnackBar(content: Text('clubs.messages.tournamentStarted'.tr()), backgroundColor: Colors.green),
         );
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red),
+          SnackBar(content: Text('clubs.messages.error'.tr(namedArgs: {'error': e.toString()})), backgroundColor: Colors.red),
         );
       }
     }
@@ -77,7 +77,7 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tournament'),
+        title: Text('clubs.messages.tournament'.tr()),
         backgroundColor: const Color(0xFF3D0000),
         foregroundColor: Colors.white,
       ),
@@ -89,7 +89,7 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: Text('Tournament not found'));
+            return Center(child: Text('clubs.messages.tournamentNotFound'.tr()));
           }
 
           final tournament = snapshot.data!;
@@ -131,11 +131,11 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
                 const SizedBox(height: 16),
 
                 // Info
-                _buildInfoRow('Max Participants', '${tournament.maxParticipants}'),
-                _buildInfoRow('Registered', '${tournament.participantIds.length}'),
-                _buildInfoRow('Questions per Match', '${tournament.questionsPerMatch}'),
-                _buildInfoRow('Registration Deadline', DateFormat('MMM d, HH:mm').format(tournament.registrationDeadline)),
-                _buildInfoRow('Start Time', DateFormat('MMM d, HH:mm').format(tournament.startTime)),
+                _buildInfoRow('clubs.messages.maxParticipants'.tr(), '${tournament.maxParticipants}'),
+                _buildInfoRow('clubs.messages.registered2'.tr(), '${tournament.participantIds.length}'),
+                _buildInfoRow('clubs.messages.questionsPerMatch'.tr(), '${tournament.questionsPerMatch}'),
+                _buildInfoRow('clubs.messages.registrationDeadline'.tr(), DateFormat('MMM d, HH:mm').format(tournament.registrationDeadline)),
+                _buildInfoRow('clubs.messages.startTime'.tr(), DateFormat('MMM d, HH:mm').format(tournament.startTime)),
                 const SizedBox(height: 16),
 
                 // Action Buttons
@@ -155,7 +155,7 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
                   ElevatedButton(
                     onPressed: _startTournament,
                     style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                    child: const Text('Start Tournament'),
+                    child: Text('clubs.messages.startTournament'.tr()),
                   ),
                 const SizedBox(height: 24),
 
@@ -195,7 +195,7 @@ class _TournamentDetailPageState extends State<TournamentDetailPage> {
 
         final matches = snapshot.data!;
         if (matches.isEmpty) {
-          return const Text('No matches yet');
+          return Text('clubs.messages.noMatchesYet'.tr());
         }
 
         // Group by round
