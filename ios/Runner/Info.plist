@@ -126,5 +126,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>GearUp needs your camera to scan and photograph cars for your garage.</string>
 </dict>
 </plist>

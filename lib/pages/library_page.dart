@@ -7,6 +7,7 @@ import '../services/audio_feedback.dart';
 import '../services/language_service.dart';
 import '../services/brand_info.dart';
 import '../services/tutorial_service.dart';
+import '../pages/garage_page.dart';
 
 
 class LibraryPage extends StatefulWidget {
@@ -139,7 +140,37 @@ class _LibraryPageState extends State<LibraryPage> {
 
     return Scaffold(
       body: selectedBrand == null
-          ? GridView.count(
+          ? Column(
+              children: [
+                // Garage entry button
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: GestureDetector(
+                    onTap: () {
+                      try { AudioFeedback.instance.playEvent(SoundEvent.tap); } catch (_) {}
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const GaragePage()));
+                    },
+                    child: Container(
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF2A2A2A),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFFEF9A9A), width: 1),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.garage_outlined, color: Color(0xFFEF9A9A), size: 20),
+                          const SizedBox(width: 8),
+                          Text('garage.title'.tr(),
+                              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15)),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GridView.count(
               crossAxisCount: 2,
               padding: const EdgeInsets.all(16),
               mainAxisSpacing: 16,
@@ -210,6 +241,9 @@ class _LibraryPageState extends State<LibraryPage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                  ),
+                ),
+              ],
                   ),
                 ),
               ],
