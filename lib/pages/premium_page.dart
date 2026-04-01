@@ -384,6 +384,8 @@ class _PremiumPageState extends State<PremiumPage> with SingleTickerProviderStat
                         _buildFeatureRow(Icons.block, 'premium.noAds'.tr(), 'premium.noAdsDesc'.tr(), Colors.blue.shade400),
                         const SizedBox(height: 14),
                         _buildFeatureRow(Icons.fitness_center, 'premium.unlimitedTraining'.tr(), 'premium.unlimitedTrainingDesc'.tr(), Colors.green.shade400),
+                        const SizedBox(height: 14),
+                        _buildFeatureRow(Icons.auto_awesome, 'premium.aiAutoFill'.tr(), 'premium.aiAutoFillDesc'.tr(), Colors.purple.shade300),
                         const SizedBox(height: 20),
 
                         // Price and CTA

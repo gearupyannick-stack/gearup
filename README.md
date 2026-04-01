@@ -9,10 +9,11 @@ GearUp is a Flutter mobile app designed to help users learn about cars — brand
 - **Training mode**: 20-question multiple-choice quizzes on categories like brand, model, year, origin, engine type, speed, and more.
 - **Home challenges**: Quick car logo and flag challenges to test recognition.
 - **Library**: Browse cars by brand and explore specifications.
+- **My Garage**: Add your own cars by taking a photo — AI auto-fill (Gemini Vision) instantly recognises the car and fills in all specs (premium feature).
 - **Profile**: Track progress, unlock achievements, and manage your account.
 - **Gamification**: Points, lives, achievements, and streaks to keep users motivated.
 - **Ads integration**: Google Mobile Ads for free users, interstitials shown at intervals.
-- **Premium plan**: Unlocks extra features and removes ads.
+- **Premium plan**: Unlimited lives, no ads, unlimited training, and AI car recognition.
 
 ---
 

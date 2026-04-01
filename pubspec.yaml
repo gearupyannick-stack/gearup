@@ -1,7 +1,7 @@
 name: car_learning_app
 description: A Flutter app to help users learn about cars and their specifications.
 publish_to: "none"
-version: 1.2026.0+31
+version: 1.2026.2+33
 
 environment:
   sdk: ">=3.4.0 <4.0.0"
@@ -36,6 +36,7 @@ dependencies:
   camera: ^0.11.0
   google_mlkit_object_detection: ^0.15.1
   permission_handler: ^11.0.0
+  google_generative_ai: ^0.4.7
 
 dev_dependencies:
   flutter_test:
